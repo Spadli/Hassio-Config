@@ -1,0 +1,29 @@
+####cover:####
+
+- platform: knx
+  name: "Erker.Shutter"
+  move_long_address: '4/1/1'
+  move_short_address: '4/2/0'
+  #position_address: '3/0/3'
+  #position_state_address: '3/0/2'
+  travelling_time_down: 37
+  travelling_time_up: 37
+- platform: knx
+  name: "Tuer.Shutter"
+  move_long_address: '4/1/2'
+  move_short_address: '4/2/1'
+  #position_address: '3/0/3'
+  #position_state_address: '3/0/2'
+  travelling_time_down: 50
+  travelling_time_up: 50
+- platform: knx
+  name: "Fenster.Shutter"
+  move_long_address: '4/1/3'
+  move_short_address: '4/2/2'
+  #position_address: '3/0/3'
+  #position_state_address: '3/0/2'
+  travelling_time_down: 36
+  travelling_time_up: 36
+- platform: mqtt
+  name: "Shelly Switch Roller"
+  state_topic: "shellies/shellyswitch-55c45e/roller/0"

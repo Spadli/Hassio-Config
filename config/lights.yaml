@@ -1,0 +1,161 @@
+## LIGHTS 
+### KNX Lichter - schalten und dimmen ######
+
+##### EG #####
+#---- Küche ----
+- platform: knx
+  name: Kitchen-Einbau
+  address: '1/1/8' #E/A
+  state_address: '1/0/20'  #RM
+  brightness_address: '1/3/11'  #WERT
+- platform: knx
+  name: Kitchen-Fenster
+  address: '1/1/9'  #E/A
+  state_address: '1/0/21'  #RM
+  brightness_address: '1/3/9'  #WERT
+  brightness_state_address: '1/4/9'  #WERT R/ M
+- platform: knx
+  name: Kitchen-FL
+  address: '1/1/10'
+  state_address: '1/0/22'  #RM
+  brightness_address: '1/3/10'  #WERT
+  brightness_state_address: '1/4/10'  #WERT R/ M
+
+#---- Gang EG ----
+- platform: knx
+  name: Gang_EG
+  address: '1/1/12'  #E/A
+  state_address: '1/0/30'  #RM
+  brightness_address: '1/3/11'  #WERT
+  brightness_state_address: '1/4/11'  #WERT R/ M
+
+#---- Wohnzimmer ----
+- platform: knx
+  name: WZ_Rückwand
+  address: '1/1/0'  #E/
+  brightness_address: '1/3/0'  #WERTA
+  state_address: '1/0/0'  #RM
+  brightness_state_address: '1/4/0'  #WERT RM/ 
+- platform: knx
+  name: WZ_Essen
+  address: '1/1/1'  #E/A
+  state_address: '1/0/1'  #RM
+  brightness_address: '1/3/1'  #WERT
+  brightness_state_address: '1/4/1'  #WERT R/ M
+- platform: knx
+  name: WZ_mittlereReihe
+  address: '1/1/2'  #E/A
+  state_address: '1/0/2'  #RM
+  brightness_address: '1/3/2'  #WERT
+  brightness_state_address: '1/4/2'  #WERT R/ M
+- platform: knx
+  name: WZ_hintereReihe
+  address: '1/1/3'  #E/A
+  state_address: '1/0/3'  #RM
+  brightness_address: '1/3/3'  #WERT
+  brightness_state_address: '1/4/3'  #WERT R/ M
+  #--geschalten
+- platform: knx
+  name: SA_DoseFenster
+  address: '1/1/5' #E/A
+  state_address: '1/0/6'  #RM
+- platform: knx
+  name: SA_Vitrine
+  address: '1/1/4' #E/A
+  state_address: '1/0/5'  #RM
+- platform: knx
+  name: SA_DoseWZ
+  address: '1/1/6' #E/A
+  state_address: '1/0/7'  #RM
+- platform: knx
+  name: Pergola
+  address: '1/1/7' #E/A
+  state_address: '1/0/8'  #RM
+
+#---- WCEG ----
+- platform: knx
+  name: WCEG_Deckenlicht
+  address: '1/1/114'  #E/A
+  state_address: '1/0/118'  #RM
+#  brightness_address: '1/3/0'  #WERT
+#  brightness_state_address: '1/4/0'  #WERT R/ M
+- platform: knx
+  name: WCEG_Spiegellicht
+  address: '1/1/115' #E/A
+  state_address: '1/0/119'  #RM
+
+#---- OG -----
+- platform: knx
+  name: GOG_Licht
+  address: '2/1/0'  #E/A
+  brightness_address: '2/3/0'  #WERT
+  state_address: '2/0/0'  #RM
+  brightness_state_address: '2/4/0'  #WERT R/M
+- platform: knx
+  name: WCOG_Licht
+  address: '2/1/1'  #E/A
+  brightness_address: '2/3/1'  #WERT
+  state_address: '2/0/1'  #RM
+  brightness_state_address: '2/4/1'  #WERT R/M
+- platform: knx
+  name: Zi1-Ronny
+  address: '2/1/3'  #E/A
+  brightness_address: '2/3/3'  #WERT
+  state_address: '2/0/1'  #RM
+  brightness_state_address: '2/4/1'  #WERT R/M
+- platform: knx
+  name: Zi2-Buero
+  address: '2/1/7'  #E/A
+  brightness_address: '2/3/4'  #WERT
+  state_address: '2/0/6'  #RM
+  brightness_state_address: '2/4/2'  #WERT R/M
+- platform: knx
+  name: Zi3-Mona
+  address: '2/1/5'  #E/A
+  brightness_address: '2/3/5'  #WERT
+  state_address: '2/0/4'  #RM
+  brightness_state_address: '2/4/3'  #WERT R/M  
+#---geschalten---
+- platform: knx
+  name: SA_WCOG-Spiegel
+  address: '2/1/2' #E/A
+  state_address: '2/0/3'  #RM  
+- platform: knx
+  name: SA_Zi2-Staenderlampe
+  address: '2/1/8' #E/A
+  state_address: '2/0/7'  #RM
+- platform: knx
+  name: SA_Zi3-Nachtlampe
+  address: '2/1/6' #E/A
+  state_address: '2/0/5'  #RM    
+  
+#------ DG ---------
+- platform: knx
+  name: Wand DG
+  address: '3/1/1'  #E/A
+  brightness_address: '3/3/1'  #WERT
+  state_address: '3/0/1'  #RM
+  brightness_state_address: '3/4/1'  #WERT R/M  
+- platform: knx
+  name: GDG
+  address: '3/1/0'  #E/A
+  brightness_address: '3/3/0'  #WERT
+  state_address: '3/0/0'  #RM
+  brightness_state_address: '3/4/0'  #WERT R/M 
+  #---geschalten---
+- platform: knx
+  name: SA_WCDG
+  address: '3/1/2' #E/A
+  state_address: '3/0/2'  #RM  
+- platform: knx
+  name: SA_Bad
+  address: '3/1/3' #E/A
+  state_address: '3/0/3'  #RM
+- platform: knx
+  name: SA_Nachtlampe_Links
+  address: '3/1/5' #E/A
+  state_address: '3/0/5'  #RM
+- platform: knx
+  name: SA_Nachtlampe_Rechts
+  address: '3/1/4' #E/A
+  state_address: '3/0/4'  #RM

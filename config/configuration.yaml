@@ -1,0 +1,140 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+panel_iframe:
+#  mqtt:
+#    title: MQTT
+#    icon: mdi:code-brackets
+#    url: https://10.0.0.43:1883  #vorher :5713
+# Text to speech wertwert
+tts:
+  - platform: google_translate
+
+#group: !include groups.yaml
+#automation: !include automations.yaml
+#automation: !include_dir_merge_list automation/
+script: !include scripts.yaml
+scene: !include scenes.yaml
+light: !include lights.yaml
+cover: !include cover.yaml
+
+knx:
+  tunneling:
+    host: !secret knx_ip
+    port: 3671
+    local_ip: '10.0.0.43'
+
+sensor:
+  - platform: yr
+  - platform: knx
+    name: Temp_DG_Tür
+    state_address: '0/5/0'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_DGWC
+    state_address: '0/5/2'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_DGBett
+    state_address: '0/5/3'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_GangOG
+    state_address: '0/5/4'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_WCEG
+    state_address: '0/5/5'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_Zimmer1
+    state_address: '0/5/6'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_Zimmer2
+    state_address: '0/5/7'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_Zimmer3
+    state_address: '0/5/8'
+    type: 'temperature'
+  - platform: knx
+    name: Temp_WCOG
+    state_address: '0/5/9'
+    type: 'temperature'
+  # - platform: mqtt
+    # name: "Shelly HT Temp"
+    # state_topic: "shellies/shellyht-22C505/sensor/temperature"
+  # - platform: mqtt
+    # name: "Shelly HT Hum"
+    # state_topic: "shellies/shellyht-22C505/sensor/humidity"
+    # unit_of_measurement: 'rel%'
+
+# Example configuration.yaml entry
+zwave:
+  usb_path: /dev/ttyACM0
+  #device_config: !include zwave_device_config.yaml"
+  #network_key: "0x2c 0x89 0x0c 0x7b 0x02 0x6f 0xa5 0x83 0x5d 0x50 0xc5 0xa9 0x96 0x54 0x98 0xab"
+
+shelly:
+  discovery: true
+# thermostat:
+  # - platform: zwave
+    # name: Heizung_Ronny
+    # state_topic: "sensor.danfoss_popp_radiator_thermostat_temperature"
+    # type: temperature
+    
+weather:
+  - platform: openweathermap
+    api_key: "9f2c4def7b042a978c28b5f96bb8dfdd"
+    
+# Cover - Läden WZ KNX-Schalter an der Wand
+binary_sensor:
+  - platform: knx
+    name: Livingroom.Cover_Up
+    state_address: '4/3/4' # cover up
+    automation:
+      - counter: 1
+        #hook: 'on'
+        action:
+          - entity_id: cover.shelly_shsw_21_55c45e  #Erker
+            service: cover.open_cover
+          - entity_id: cover.shelly_shsw_25_b932ca  #Tür
+            service: cover.open_cover
+          - entity_id: cover.shelly_shsw_25_b932cf  #Grosses Fenster
+            service: cover.open_cover
+      - counter: 2
+        #hook: 'on'
+        action:
+          - entity_id: cover.shelly_shsw_21_55c45e  #Erker
+            service: cover.stop_cover
+          - entity_id: cover.shelly_shsw_25_b932ca  #Tür
+            service: cover.stop_cover
+          - entity_id: cover.shelly_shsw_25_b932cf  #Grosses Fenster
+            service: cover.stop_cover
+  - platform: knx
+    name: Livingroom.Cover_Down
+    state_address: '4/3/5' # cover downup
+    #state_address: '4/2/3' # cover stop
+    automation:
+      - counter: 1
+        action:
+          - entity_id: cover.shelly_shsw_21_55c45e  #Erker
+            service: cover.close_cover
+          - entity_id: cover.shelly_shsw_25_b932ca  #Tür
+            service: cover.close_cover
+          - entity_id: cover.shelly_shsw_25_b932cf  #Grosses Fenster
+            service: cover.close_cover
+      - counter: 2
+        #hook: 'on'
+        action:
+          - entity_id: cover.shelly_shsw_21_55c45e  #Erker
+            service: cover.stop_cover
+          - entity_id: cover.shelly_shsw_25_b932ca  #Tür
+            service: cover.stop_cover
+          - entity_id: cover.shelly_shsw_25_b932cf  #Grosses Fenster
+            service: cover.stop_cover
